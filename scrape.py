@@ -1,19 +1,27 @@
 from bs4 import BeautifulSoup
 import requests
 
-url = "https://www.nba.com/player/1641705/victor-wembanyama/profile"
+def scrape():
 
-page = requests.get(url)
+	url = "https://www.nba.com/player/1641705/victor-wembanyama/profile"
 
-soup = BeautifulSoup(page.text, features="html.parser")
+	page = requests.get(url)
 
-nameTable = soup.find_all('tr')[0]
-names = nameTable.find_all('th')[4:23]
+	soup = BeautifulSoup(page.text, features="html.parser")
 
-statTable = soup.find_all('tr')[1] #Finds stats table
-stats = statTable.find_all('td')[3:23] #Finds Stats
+	nameTable = soup.find_all('tr')[0] #Finds category names table
+	names = nameTable.find_all('th')[4:23] #Finds category names
 
-nameList = [title.text for title in names]
-statList = [title.text for title in stats] #Lists the stats
+	statTable = soup.find_all('tr')[1] #Finds stats table
+	stats = statTable.find_all('td')[3:23] #Finds Stats
 
-print(nameList,"\n",statList)
+	nameList = [title.text for title in names] #List the names
+	statList = [title.text for title in stats] #Lists the stats
+
+	full = dict(zip(nameList,statList))
+
+	return full 
+
+if __name__ == "__main__":
+
+	print(scrape())
