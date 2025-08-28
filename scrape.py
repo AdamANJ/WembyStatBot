@@ -18,10 +18,12 @@ def scrape():
 	nameList = [title.text for title in names] #List the names
 	statList = [title.text for title in stats] #Lists the stats
 
-	full = dict(zip(nameList,statList))
+	full = dict(zip(nameList,statList)) #Combining list into a dictonary
 
 	return full 
 
 if __name__ == "__main__":
 
-	print(scrape())
+	a = scrape()
+
+	print(a['PTS'])
