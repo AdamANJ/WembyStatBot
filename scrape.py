@@ -10,7 +10,7 @@ def scrape():
 	soup = BeautifulSoup(page.text, features="html.parser")
 
 	nameTable = soup.find_all('tr')[0] #Finds category names table
-	names = nameTable.find_all('th')[4:23] #Finds category names
+	names = nameTable.find_all('th')[3:23] #Finds category names
 
 	statTable = soup.find_all('tr')[1] #Finds stats table
 	stats = statTable.find_all('td')[3:23] #Finds Stats
